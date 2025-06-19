@@ -16,7 +16,7 @@ function Home() {
 
   return (
     <div className="container">
-      <h1>🎼 Music Sheet Library</h1>
+      <h1>🎼 Vincent's Music Sheet Library</h1>
 
       <input
         type="text"
