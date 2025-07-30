@@ -7,7 +7,6 @@ const Header = () => {
       <div className="overlay">
         <h1>Preserve Your Culture.</h1>
         <h2>Play Your Roots.</h2>
-        {/* <h3>Vincent Ji Cello</h3> */}
         <p>
           A global sanctuary for traditional music, where ancient melodies find new life through digital preservation.
         </p>

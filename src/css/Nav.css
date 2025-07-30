@@ -37,20 +37,55 @@
   color: #576a79; /* subtle orange hover */
 }
 
+/* Hamburger button styling */
+.navbar-toggle {
+  display: none;
+  flex-direction: column;
+  justify-content: space-between;
+  width: 24px;
+  height: 20px;
+  background: transparent;
+  border: none;
+  cursor: pointer;
+  padding: 0;
+  z-index: 1300; /* above menu */
+}
+
+.navbar-toggle .bar {
+  height: 3px;
+  width: 100%;
+  background-color: #5a2d09;
+  border-radius: 2px;
+}
+
+/* Show hamburger only on mobile and adjust layout */
 @media (max-width: 768px) {
   .navbar {
-    flex-direction: column;
-    align-items: flex-start;
-    padding: 1rem;
+    flex-direction: row;              /* Keep logo and hamburger in a row */
+    justify-content: space-between;   /* Push logo left and hamburger right */
+    align-items: center;              /* Vertically center */
+    padding: 1rem 1.5rem;
   }
 
-  .navbar-menu {
+  .navbar-toggle {
     display: flex;
-    flex-direction: column;
-    gap: 0.5rem;
-    margin-top: 0.5rem;
   }
 
+  /* Hide menu by default */
+  .navbar-menu {
+    display: none;
+    width: 100%;
+    flex-direction: column;
+    margin-top: 0.5rem;
+    gap: 0.5rem;
+  }
+
+  /* Show menu when toggled */
+  .navbar-menu.open {
+    display: flex;
+  }
+
+  /* Remove margin-left on mobile links */
   .navbar-menu a {
     margin-left: 0;
   }
