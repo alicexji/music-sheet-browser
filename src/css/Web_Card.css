@@ -279,3 +279,34 @@
       border-width: 0;
   }
 }
+
+/************************************************/
+@media (max-width: 768px) {
+  .web-cards {
+    width: 100%;
+    padding: 0 1rem;
+    margin: 0.5rem 0;
+  }
+
+  .web-cards header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+
+  .web-cards h2 {
+    font-size: 2rem;
+    margin: 0;
+  }
+
+  .web-cards .poem {
+    font-size: 0.95rem;
+  }
+
+  .web-cards label {
+    font-size: 1.5rem;
+    margin-left: auto;
+    line-height: 1;
+    padding-top: 0.15rem;
+  }
+}

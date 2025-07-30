@@ -8,7 +8,7 @@ const Web_Card = () => {
         <input className="sr-only" id="card-2" type="radio" name="panel" />
         <input className="sr-only" id="card-3" type="radio" name="panel" />
 
-        <article id="article-1">
+        <article id="article-1" className="web-cards">
             <header>
             <h2>Every Note Tells A Story</h2>
             <label htmlFor="card-2">&#10539;</label>
@@ -27,7 +27,7 @@ const Web_Card = () => {
             </div>
         </article>
 
-        <article id="article-2">
+        <article id="article-2" className="web-cards">
             <header>
             <h2>Why We Exist</h2>
             <label htmlFor="card-3">&#10539;</label>
@@ -52,7 +52,7 @@ const Web_Card = () => {
             </div>
         </article>
 
-        <article id="article-3">
+        <article id="article-3" className="web-cards">
             <header>
             <h2>Founder's Story</h2>
             <label htmlFor="card-1">&#10539;</label>
