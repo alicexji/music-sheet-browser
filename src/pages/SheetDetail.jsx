@@ -59,7 +59,7 @@ function SheetDetail() {
         {downloadCount !== null && (
           <p>Downloads: {downloadCount}</p>
         )}
-        <Link to="/" className="btn btn-link mt-3">← Back to all sheets</Link>
+        <Link to="/" className="btn btn-link mt-3" style={{ color: 'black' }}>← Back to all sheets</Link>
       </div>
     </div>
   );
