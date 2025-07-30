@@ -1,0 +1,54 @@
+@import url('https://fonts.googleapis.com/css2?family=IBM+Plex+Serif:wght@400;600;700&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=IBM+Plex+Serif&display=swap');
+
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+.banner-header {
+  width: 100vw;
+  height: 100vh; 
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-image: url('/images/lib_cover.jpg');
+}
+
+.banner-header h1 {
+  font-family: "IBM Plex Serif";
+  font-size: 16rem;
+  margin-bottom: 1rem;
+  color: #fff6cf;
+}
+
+
+.banner-header .overlay {
+  position: relative;
+  z-index: 2;
+  color: rgb(255, 255, 255);
+  text-align: center;
+  padding: 2rem;
+  text-shadow: 1px 1px 3px #000;
+  max-width: 800px;
+}
+
+
+
+
+@media (max-width: 768px) {
+    .banner-header {
+        height: 50vh
+    }
+  .banner-header h1,
+  .banner-header h2 {
+    font-size: 6rem;
+  }
+
+}

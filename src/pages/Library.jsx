@@ -6,6 +6,7 @@ import SheetCard from './SheetCard';
 import Header from '../components/Header';
 import Web_Card from '../components/Web_Card';
 import '../App.css';
+import Banner from '../components/Banner';
 
 function Library() {
   const [searchTerm, setSearchTerm] = useState('');
@@ -21,7 +22,8 @@ function Library() {
 
   return (
     <>
-      <Header/>
+      {/* <Header/> */}
+      <Banner Title="Library"/>
     
 
       <div style={{marginTop: 120}} className="content-wrapper">
