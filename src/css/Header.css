@@ -77,3 +77,41 @@
   cursor: pointer;
   transform: translateY(-2px);
 }
+
+.button-link {
+  display: inline-block;
+  padding: 0.75rem 1.5rem;
+  border-radius: 999px;
+  background-color: white;
+  color: #333;
+  font-weight: bold;
+  font-size: 1rem;
+  text-decoration: none;
+  text-shadow:none;
+  transition: all 0.3s ease;
+  border: none;
+}
+
+.button-link:hover {
+  transform: translateY(-2px);
+  background-color: #ffd062;
+  color: #000000;
+  cursor: pointer;
+}
+
+
+@media (max-width: 768px) {
+  .main-header h1,
+  .main-header h2 {
+    font-size: 3.5rem;
+  }
+
+  .main-header p {
+    font-size: 1rem;
+  }
+
+  .main-header button {
+    font-size: 0.9rem;
+    padding: 0.6rem 1.2rem;
+  }
+}
