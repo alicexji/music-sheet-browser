@@ -2,7 +2,7 @@
 import React, { useEffect, useState } from 'react';
 import { useParams, Link } from 'react-router-dom';
 import sheets from '../data/sheets';
-
+import '../App.css';
 
 const API_URL = "https://98o7or2p30.execute-api.us-east-1.amazonaws.com/increment";
 
@@ -42,27 +42,29 @@ function SheetDetail() {
     return <div>Sheet not found</div>;
   }
 
+
   return (
-    <div className="container">
-      <h1>{sheet.title}</h1>
-      <p><strong>Composer:</strong> {sheet.composer}</p>
-      <a
-        href={sheet.url}
-        onClick={() => trackDownload(sheet.id)}
-        download
-        className="download-link"
-      >
-        ⬇️ Download PDF
-      </a>
-      {downloadCount !== null && (
-        <p style={{ marginTop: "0.5rem", fontSize: "0.9rem", color: "#555" }}>
-          Downloads: {downloadCount}
-        </p>
-      )}
-      <br />
-      <Link to="/" className="back-link">← Back to all sheets</Link>
+    <div className="container mt-5">
+      <div className="card shadow p-4">
+        <h1 className="card-title">{sheet.title}</h1>
+        <p className="text-muted"><strong>Composer:</strong> {sheet.composer}</p>
+        <a
+          href={sheet.url}
+          onClick={() => trackDownload(sheet.id)}
+          download
+          className="btn btn-download mb-3"
+        >
+          Download PDF
+        </a>
+        {downloadCount !== null && (
+          <p>Downloads: {downloadCount}</p>
+        )}
+        <Link to="/" className="btn btn-link mt-3">← Back to all sheets</Link>
+      </div>
     </div>
   );
 }
 
 export default SheetDetail;
+
+

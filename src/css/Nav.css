@@ -1,0 +1,57 @@
+@import url('https://fonts.googleapis.com/css2?family=IBM+Plex+Sans&family=IBM+Plex+Serif&display=swap');
+
+.navbar {
+  width: 100%;
+  padding: 0.75rem 2rem;
+  position: fixed;
+  top: 0;
+  left: 0;
+  /* background-color: rgba(255, 255, 255, 0.85); */
+  background-color: rgba(214, 202, 192, 0.75);
+  backdrop-filter: blur(4px);
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  font-family: 'IBM Plex Sans', sans-serif;
+  border-bottom: 1px solid #ddd;
+  z-index: 1200;
+}
+
+.navbar-logo {
+  font-family: 'IBM Plex Serif', serif;
+  font-size: 1.5rem;
+  font-weight: bold;
+  color: #5a2d09;
+}
+
+.navbar-menu a {
+  margin-left: 2rem;
+  text-decoration: none;
+  color: #5a2d09;
+  font-size: 1.25rem;
+  font-weight: 600;
+  transition: color 0.25s ease;
+}
+
+.navbar-menu a:hover {
+  color: #576a79; /* subtle orange hover */
+}
+
+@media (max-width: 768px) {
+  .navbar {
+    flex-direction: column;
+    align-items: flex-start;
+    padding: 1rem;
+  }
+
+  .navbar-menu {
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+    margin-top: 0.5rem;
+  }
+
+  .navbar-menu a {
+    margin-left: 0;
+  }
+}

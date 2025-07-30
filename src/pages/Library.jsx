@@ -7,7 +7,7 @@ import Header from '../components/Header';
 import Web_Card from '../components/Web_Card';
 import '../App.css';
 
-function Home() {
+function Library() {
   const [searchTerm, setSearchTerm] = useState('');
   console.log('sheets',sheets);
   const filteredSheets = sheets.filter((sheet) => {
@@ -22,11 +22,9 @@ function Home() {
   return (
     <>
       <Header/>
-      <div style = {{display: 'flex', justifyContent: 'center', alignItems: 'center', marginTop:120, marginBottom: 120}}>
-        <Web_Card/>
-      </div>
+    
 
-      <div className="content-wrapper">
+      <div style={{marginTop: 120}} className="content-wrapper">
         <section className="hero">
           
           <div className="hero-content">
@@ -58,4 +56,4 @@ function Home() {
 
 }
 
-export default Home;
+export default Library;

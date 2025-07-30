@@ -1,0 +1,91 @@
+.grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  gap: 2rem;
+  padding: 2rem 1rem;
+}
+
+.sheet-card {
+  text-decoration: none;
+  border: 1px solid #eee;
+  border-radius: 16px;
+  padding: 1.5rem;
+  box-shadow: 0 2px 12px rgba(0,0,0,0.05);
+  background: white;
+  transition: all 0.2s ease-in-out;
+}
+
+.sheet-card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 4px 20px rgba(0,0,0,0.08);
+}
+
+.card-header {
+  margin-bottom: 0.75rem;
+  display: flex;
+  gap: 0.5rem;
+  flex-wrap: wrap;
+}
+
+.badge.tag {
+  background: #f1f1f1;
+  color: #444;
+  font-size: 0.75rem;
+  padding: 0.3rem 0.6rem;
+  border-radius: 8px;
+}
+
+.card-title {
+  font-family: 'IBM Plex Serif', serif;
+  font-size: 1.3rem;
+  font-weight: 700;
+  margin: 0.5rem 0;
+  color: #1a1a1a;
+}
+
+.card-composer {
+  color: #666;
+  font-size: 0.95rem;
+  margin-bottom: 0.75rem;
+}
+
+.card-meta {
+  font-size: 0.8rem;
+  color: #999;
+  margin-bottom: 1rem;
+}
+
+.card-buttons {
+  display: flex;
+  gap: 1rem;
+  flex-wrap: wrap;
+}
+
+.btn {
+  border: none;
+  border-radius: 8px;
+  padding: 0.5rem 1rem;
+  font-size: 0.85rem;
+  cursor: pointer;
+}
+
+.preview-btn {
+  background: #7a4e29;
+  color: white;
+}
+
+.download-btn {
+  background: #f1f1f1;
+  color: #7a4e29;
+}
+
+@media (max-width: 600px) {
+  .grid {
+    gap: 1rem;
+    padding: 1rem 0.5rem;
+  }
+  .btn {
+    flex: 1 1 100%;
+    text-align: center;
+  }
+}
