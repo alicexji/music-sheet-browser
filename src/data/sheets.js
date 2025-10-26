@@ -26,7 +26,7 @@ const sheets = [
     id: '4',
     title: 'love.',
     composer: 'wave to earth',
-    url: '/sheets/love..pdf',
+    url: '/sheets/love.pdf',
     level: 'Beginner',
     genre: ['Indie Pop', 'R&B'],
   },
@@ -36,7 +36,10 @@ const sheets = [
     composer: 'Radiohead',
     url: '/sheets/Let Down.pdf',
     level: 'Beginner',
-    genre: ['Alt Rock', 'Alt Indie'],
+    genre: ['Alt Rock', 'Art Rock'],
+    countryOfOrigin: 'United Kingdom',
+    period: '1997',
+    historicalContext: '"Let Down" is a song by the English rock band Radiohead, released on their third studio album, OK Computer (1997). It contains multilayered arpeggiated guitars and electric piano in different time signatures, and lyrics inspired '
   },
   {
     id: '6',
@@ -62,6 +65,179 @@ const sheets = [
     level: 'Beginner',
     genre: ['Pop Rock', 'Indie Rock'],
   },
+
+  // All items from here (id >= 9) have url set to ''
+  {
+    id: '9',
+    title: 'Journey to The West Theme Song',
+    composer: 'Xu Jingqing',
+    countryOfOrigin: 'China',
+    url: '',
+    level: 'Beginner',
+    genre: ['Classical', 'Traditional'],
+    period: 1982,
+    historicalContext: 'Journey to the West is a Chinese television series adapted from Wu Cheng\'en\'s 16th-century novel of the same name.',
+    submitter: 'Jason'
+  },
+  {
+    id: '10',
+    title: 'Mojito',
+    composer: 'Jay Chou',
+    countryOfOrigin: 'Taiwan',
+    url: '',
+    level: 'Beginner',
+    genre: ['Mandopop', 'Latin'],
+    period: 2020,
+    historicalContext: 'A fusion of Cuban rhythms and Mandarin pop by Jay Chou'
+  },
+  {
+    id: '11',
+    title: '沉溺（你让我的心不再结冰）',
+    composer: 'Unknown',
+    countryOfOrigin: 'China',
+    url: '',
+    level: 'Beginner',
+    genre: ['Chinese'],
+    period: 2023,
+    historicalContext: ''
+  },
+  {
+    id: '12',
+    title: '好一朵美丽的茉莉花',
+    composer: 'Folk Song',
+    countryOfOrigin: 'China - Jiangnan',
+    url: '',
+    level: 'Beginner',
+    genre: ['Chinese Folk'],
+    period: '16th-18th century',
+    historicalContext: '',
+    lyrics: 'What a pretty Jasmine flower,\nWhat a pretty Jasmine flower, \nNice to see and nice to smell! \nPraiseworthy scent, \nand white as well!You are what I\'d like to pluck. \nGiving other people (luck). \nOh so pretty, Jasmine Flower!'
+  },
+  {
+    id: '13',
+    title: '李建復-龍的傳人',
+    composer: 'Li Jiefu',
+    countryOfOrigin: 'Taiwan',
+    url: '',
+    level: 'Beginner',
+    genre: ['Mandopop'],
+    period: 1978,
+    historicalContext: 'A song reflecting Taiwanese nationalism'
+  },
+  {
+    id: '14',
+    title: '內山姑娘要出嫁/福爾摩沙合唱團',
+    composer: '谢丽燕',
+    countryOfOrigin: 'Taiwan',
+    url: '',
+    level: 'Beginner',
+    genre: ['Folk'],
+    period: 1966,
+    historicalContext: '《内山姑娘要出嫁》是蔡秋凤演唱的歌曲，由谢丽燕作词作曲，改编自日本歌手北岛三郎原曲《海上的姑娘》'
+  },
+  {
+    id: '15',
+    title: '阿里山的姑娘',
+    composer: 'Unknown',
+    countryOfOrigin: 'Taiwan',
+    url: '',
+    level: 'Beginner',
+    genre: ['Folk'],
+    period: 1949,
+    historicalContext: 'Depicts the Tsao indigenous people in Alishan'
+  },
+  {
+    id: '16',
+    title: '潘安邦 外婆的澎湖灣',
+    composer: 'Pan Anbang',
+    countryOfOrigin: 'Taiwan',
+    url: '',
+    level: 'Beginner',
+    genre: ['Mandopop'],
+    period: 1979,
+    historicalContext: ''
+  },
+  {
+    id: '17',
+    title: '在希望的田野上 彭丽媛演唱',
+    composer: 'Unknown',
+    countryOfOrigin: 'China',
+    url: '',
+    level: 'Beginner',
+    genre: ['Chinese'],
+    period: 2001,
+    historicalContext: 'Performed by Chinese First Lady Peng Liyuan'
+  },
+  {
+    id: '18',
+    title: 'Akaza’s love theme demon slayer infinity castle',
+    composer: 'Go Shiina',
+    countryOfOrigin: 'Japan',
+    url: '',
+    level: 'Beginner',
+    genre: ['Anime Soundtrack'],
+    period: 2025,
+    historicalContext: '',
+    submitter: 'Elise'
+  },
+  {
+    id: '19',
+    title: 'Lao Duang Deun',
+    composer: 'Prince Benbadhanabongse',
+    countryOfOrigin: 'Thailand',
+    url: '',
+    level: 'Beginner',
+    genre: ['Classical Thai'],
+    period: 1909,
+    historicalContext: 'A love song composed by a Thai prince',
+    submitter: 'Preme'
+  },
+  {
+    id: '20',
+    title: 'Liz on top of the world',
+    composer: 'Dario Marianelli',
+    countryOfOrigin: 'UK',
+    url: '',
+    level: 'Beginner',
+    genre: ['Film Score'],
+    period: 2005,
+    historicalContext: 'From the film "Pride and Prejudice"',
+    submitter: 'Jourdan'
+  },
+  {
+    id: '21',
+    title: 'Shyne - Travis Scott',
+    composer: 'Travis Scott',
+    countryOfOrigin: 'USA',
+    url: '',
+    level: 'Beginner',
+    genre: ['Hip-Hop'],
+    period: 2025,
+    historicalContext: ''
+  },
+  {
+    id: '22',
+    title: 'Ram Ranch',
+    composer: 'Grant MacDonald',
+    countryOfOrigin: 'Canada',
+    url: '',
+    level: 'Beginner',
+    genre: ['Heavy Metal'],
+    period: 2012,
+    historicalContext: 'A protest song turned internet meme'
+  },
+  {
+    id: '23',
+    title: 'Baby Shark Instrumental',
+    composer: 'Traditional',
+    countryOfOrigin: 'South Korea',
+    url: '',
+    level: 'Beginner',
+    genre: ['Children’s Song'],
+    period: 2015,
+    historicalContext: 'Based on a traditional folk song',
+    submitter: 'Ben'
+  }
 ];
 
 export default sheets;

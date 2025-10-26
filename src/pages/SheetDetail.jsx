@@ -1,5 +1,5 @@
 // src/pages/SheetDetail.jsx
-import React, { useEffect, useState } from 'react';
+import React, { Fragment, useEffect, useState } from 'react';
 import { useParams, Link } from 'react-router-dom';
 import sheets from '../data/sheets';
 import '../App.css';
@@ -35,6 +35,7 @@ function SheetDetail() {
   useEffect(() => {
     if (sheet) {
       fetchDownloadCount(sheet.id).then(setDownloadCount);
+      console.log(`---------sheet url ${sheet.url}`);
     }
   }, [sheet]);
 
@@ -48,17 +49,40 @@ function SheetDetail() {
       <div className="card shadow p-4">
         <h1 className="card-title">{sheet.title}</h1>
         <p className="text-muted"><strong>Composer:</strong> {sheet.composer}</p>
-        <a
-          href={sheet.url}
-          onClick={() => trackDownload(sheet.id)}
-          download
-          className="btn btn-download mb-3"
-        >
-          Download PDF
-        </a>
-        {downloadCount !== null && (
-          <p>Downloads: {downloadCount}</p>
+        <p className="text-muted"><strong>Country of Origin:</strong> {sheet.countryOfOrigin}</p>
+        {sheet.lyrics && sheet.lyrics.trim() !== "" && (
+          <div className="lyrics">
+            <h3>Lyrics</h3>
+            <pre>{sheet.lyrics}</pre>
+          </div>
         )}
+        <Fragment>
+          {sheet.historicalContext && sheet.historicalContext.trim() !== "" && (
+          <p className="text-muted"><strong>Historical Background:</strong> {sheet.historicalContext}</p>
+        )}
+        </Fragment>
+        <Fragment>
+          {sheet.url && sheet.url.trim() !== "" && (
+            <a
+              href={sheet.url}
+              onClick={() => trackDownload(sheet.id)}
+              download
+              className="btn btn-download mb-3"
+            >
+              Download PDF
+            </a>
+          )}
+        </Fragment>
+        <Fragment>
+          {sheet.url && sheet.url.trim() !== "" && downloadCount !== null && (
+            <p>Downloads: {downloadCount}</p>
+          )}
+        </Fragment>
+        <Fragment>
+          <p className="text-muted"><strong>Submitted by:</strong> {sheet.submitter??'anonymous'}</p>
+        </Fragment>
+        
+
         <Link to="/" className="btn btn-link mt-3" style={{ color: 'black' }}>← Back to all sheets</Link>
       </div>
     </div>

@@ -30,10 +30,14 @@ function SheetCard({ sheet }) {
     <Link to={`/sheet/${sheet.id}`} className="card sheet-card">
       <div className="card-body">
         <div className="card-header">
-          <span className="badge tag">{sheet.level || 'Intermediate'}</span>
-          {(sheet.genre ? sheet.genre : ['Classical']).map((g, index) => (
+          <span className="badge tag">{sheet.period || 'period: unknown'}</span>
+          <span className="badge tag">{sheet.countryOfOrigin || 'origin: unknown'}</span>
+          
+          <span className="badge tag">Genre:
+            {(sheet.genre ? sheet.genre : ['Classical']).map((g, index) => (
                 <span key={index} className="badge tag">{g}</span>
                 ))}
+          </span>
         </div>
 
         <h2 className="card-title">{sheet.title}</h2>
