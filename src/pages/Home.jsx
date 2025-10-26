@@ -1,5 +1,6 @@
 
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
+import { useLocation } from 'react-router-dom';
 import { Link } from 'react-router-dom';
 import sheets from '../data/sheets';
 import SheetCard from './SheetCard';
@@ -9,6 +10,8 @@ import '../App.css';
 
 function Home() {
   const [searchTerm, setSearchTerm] = useState('');
+  const location = useLocation();
+
   console.log('sheets',sheets);
   const filteredSheets = sheets.filter((sheet) => {
     const search = searchTerm.toLowerCase();
@@ -18,6 +21,19 @@ function Home() {
     );
   });
   console.log('filtered',filteredSheets);
+
+  useEffect(() => {
+    // Try to restore exact scroll
+    const yFromState = typeof location.state?.scrollY === 'number' ? location.state.scrollY : null;
+    const yFromStorage = sessionStorage.getItem('prev-scroll');
+    if (yFromState !== null) {
+      window.scrollTo({ top: yFromState, behavior: 'instant' });
+    } else if (yFromStorage) {
+      window.scrollTo({ top: Number(yFromStorage), behavior: 'instant' });
+      sessionStorage.removeItem('prev-scroll');
+    }
+    // If the URL has a hash (e.g. /#all-sheets) and no stored scroll, native browser will also handle.
+  }, [location.key]); // run on navigation into Home
 
   return (
     <>
@@ -43,7 +59,8 @@ function Home() {
           className="search-input"
         />
 
-        <div className="grid">
+        {/* anchor for hash fallback */}
+        <div id="all-sheets" className="grid">
           {filteredSheets.map((sheet, i) =>
             sheet?.id ? (
               <SheetCard key={sheet.id} sheet={sheet} />

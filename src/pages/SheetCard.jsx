@@ -24,19 +24,29 @@ function SheetCard({ sheet }) {
   useEffect(() => {
     fetchDownloadCount(sheet.id).then(setDownloadCount);
   }, [sheet.id]);
+
+  // when navigating to detail, stash current scroll as a fallback
+  const handleClick = () => {
+    sessionStorage.setItem('prev-scroll', String(window.scrollY));
+  };
  
 
   return (
-    <Link to={`/sheet/${sheet.id}`} className="card sheet-card">
+    <Link
+      to={`/sheet/${sheet.id}`}
+      state={{ from: 'home', scrollY: window.scrollY, anchor: '#all-sheets' }}
+      onClick={handleClick}
+      className="card sheet-card"
+    >
       <div className="card-body">
         <div className="card-header">
           <span className="badge tag">{sheet.period || 'period: unknown'}</span>
           <span className="badge tag">{sheet.countryOfOrigin || 'origin: unknown'}</span>
-          
+
           <span className="badge tag">Genre:
             {(sheet.genre ? sheet.genre : ['Classical']).map((g, index) => (
-                <span key={index} className="badge tag">{g}</span>
-                ))}
+              <span key={index} className="badge tag">{g}</span>
+            ))}
           </span>
         </div>
 
@@ -44,14 +54,12 @@ function SheetCard({ sheet }) {
         <p className="card-composer">{sheet.composer}</p>
 
         <div className="card-meta">
-          <span className="downloads">
-            ⬇ {downloadCount !== null ? downloadCount : '...'}
-          </span>
+          <span className="downloads">⬇ {downloadCount !== null ? downloadCount : '...'}</span>
         </div>
 
         <div className="card-buttons">
-          <button className="btn preview-btn">▶ Preview</button>
-          <button className="btn download-btn">Free</button>
+          <button className="btn preview-btn" type="button">▶ Preview</button>
+          <button className="btn download-btn" type="button">Free</button>
         </div>
       </div>
     </Link>

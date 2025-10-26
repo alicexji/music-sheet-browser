@@ -3,6 +3,9 @@ import React, { Fragment, useEffect, useState } from 'react';
 import { useParams, Link } from 'react-router-dom';
 import sheets from '../data/sheets';
 import '../App.css';
+import { useNavigate, useLocation } from 'react-router-dom';
+import '../css/SheetDetail.css';
+import PdfPreview from '../components/PdfPreview';
 
 const API_URL = "https://98o7or2p30.execute-api.us-east-1.amazonaws.com/increment";
 
@@ -43,49 +46,73 @@ function SheetDetail() {
     return <div>Sheet not found</div>;
   }
 
+  const navigate = useNavigate();
+  const location = useLocation();
+
+  const handleBack = () => {
+    // If we have real history, go back (this restores the exact scroll position)
+    if (location.key && location.key !== 'default') {
+      navigate(-1);
+    } else {
+      // Direct entry/bookmark fallback: send them to the section anchor
+      // Change '#all-sheets' to whatever your list section id is.
+      navigate('/#all-sheets');
+    }
+  };
 
   return (
-    <div className="container mt-5">
-      <div className="card shadow p-4">
-        <h1 className="card-title">{sheet.title}</h1>
-        <p className="text-muted"><strong>Composer:</strong> {sheet.composer}</p>
-        <p className="text-muted"><strong>Country of Origin:</strong> {sheet.countryOfOrigin}</p>
-        {sheet.lyrics && sheet.lyrics.trim() !== "" && (
-          <div className="lyrics">
+    <main className="sheet-detail">
+      <div className="sheet-detail__inner">
+        <h1 className="sheet-detail__title">{sheet.title}</h1>
+        <p className="meta"><strong>Composer:</strong> {sheet.composer}</p>
+        <p className="meta"><strong>Country of Origin:</strong> {sheet.countryOfOrigin}</p>
+
+    
+
+        {sheet.lyrics?.trim() && (
+          <section className="block">
             <h3>Lyrics</h3>
-            <pre>{sheet.lyrics}</pre>
-          </div>
+            <pre className="lyrics">{sheet.lyrics}</pre>
+          </section>
         )}
-        <Fragment>
-          {sheet.historicalContext && sheet.historicalContext.trim() !== "" && (
-          <p className="text-muted"><strong>Historical Background:</strong> {sheet.historicalContext}</p>
+
+        {sheet.historicalContext?.trim() && (
+          <section className="sheet-section">
+            <h3>Historical Background</h3>
+            <p>{sheet.historicalContext}</p>
+          </section>
         )}
-        </Fragment>
-        <Fragment>
-          {sheet.url && sheet.url.trim() !== "" && (
+
+        {sheet.url?.trim() && (
+          <>
             <a
               href={sheet.url}
               onClick={() => trackDownload(sheet.id)}
               download
-              className="btn btn-download mb-3"
+              className="btn btn-download"
             >
               Download PDF
             </a>
-          )}
-        </Fragment>
-        <Fragment>
-          {sheet.url && sheet.url.trim() !== "" && downloadCount !== null && (
-            <p>Downloads: {downloadCount}</p>
-          )}
-        </Fragment>
-        <Fragment>
-          <p className="text-muted"><strong>Submitted by:</strong> {sheet.submitter??'anonymous'}</p>
-        </Fragment>
-        
+            {downloadCount !== null && (
+              <p className="meta">Downloads: {downloadCount}</p>
+            )}
+          </>
+        )}
 
-        <Link to="/" className="btn btn-link mt-3" style={{ color: 'black' }}>← Back to all sheets</Link>
+        {sheet.url?.trim() && (
+          <section className="sheet-preview">
+            <h3>Preview</h3>
+            <PdfPreview fileUrl={sheet.url} initialPage={1} />
+          </section>
+        )}
+
+        <p className="meta"><strong>Submitted by:</strong> {sheet.submitter ?? 'anonymous'}</p>
+
+        <button onClick={handleBack} className="btn btn-link back-btn" aria-label="Back to all sheets">
+          ← Back to all sheets
+        </button>
       </div>
-    </div>
+    </main>
   );
 }
 
