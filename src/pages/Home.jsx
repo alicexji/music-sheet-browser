@@ -1,5 +1,5 @@
-
-import React, { useEffect, useState } from 'react';
+// src/pages/Home.jsx (or your current path)
+import React, { useEffect, useMemo, useState } from 'react';
 import { useLocation } from 'react-router-dom';
 import { Link } from 'react-router-dom';
 import sheets from '../data/sheets';
@@ -8,22 +8,39 @@ import Header from '../components/Header';
 import Web_Card from '../components/Web_Card';
 import '../App.css';
 
+export const PAGE_SIZE = 9;
+
 function Home() {
   const [searchTerm, setSearchTerm] = useState('');
+  const [visibleCount, setVisibleCount] = useState(PAGE_SIZE);
   const location = useLocation();
 
-  console.log('sheets',sheets);
-  const filteredSheets = sheets.filter((sheet) => {
-    const search = searchTerm.toLowerCase();
-    return (
-      sheet.title.toLowerCase().includes(search) ||
-      sheet.composer.toLowerCase().includes(search)
+  // Filter by search
+  const filteredSheets = useMemo(() => {
+    const search = searchTerm.trim().toLowerCase();
+    if (!search) return sheets;
+    return sheets.filter((sheet) =>
+      (sheet.title || '').toLowerCase().includes(search) ||
+      (sheet.composer || '').toLowerCase().includes(search)
     );
-  });
-  console.log('filtered',filteredSheets);
+  }, [searchTerm]);
 
+  // Visible slice (paginate in chunks of 21)
+  const visibleSheets = useMemo(
+    () => filteredSheets.slice(0, visibleCount),
+    [filteredSheets, visibleCount]
+  );
+
+  const hasMore = visibleCount < filteredSheets.length;
+  const remaining = Math.max(0, filteredSheets.length - visibleCount);
+
+  // Reset pagination when the search term changes
   useEffect(() => {
-    // Try to restore exact scroll
+    setVisibleCount(PAGE_SIZE);
+  }, [searchTerm]);
+
+  // Restore scroll (your existing behavior)
+  useEffect(() => {
     const yFromState = typeof location.state?.scrollY === 'number' ? location.state.scrollY : null;
     const yFromStorage = sessionStorage.getItem('prev-scroll');
     if (yFromState !== null) {
@@ -32,19 +49,21 @@ function Home() {
       window.scrollTo({ top: Number(yFromStorage), behavior: 'instant' });
       sessionStorage.removeItem('prev-scroll');
     }
-    // If the URL has a hash (e.g. /#all-sheets) and no stored scroll, native browser will also handle.
-  }, [location.key]); // run on navigation into Home
+  }, [location.key]);
+
+  const handleSeeMore = () => {
+    setVisibleCount((c) => Math.min(c + PAGE_SIZE, filteredSheets.length));
+  };
 
   return (
     <>
       <Header/>
-      <div style = {{display: 'flex', justifyContent: 'center', alignItems: 'center', marginTop:120, marginBottom: 120}}>
+      <div style={{ display: 'flex', justifyContent: 'center', alignItems: 'center', marginTop: 120, marginBottom: 120 }}>
         <Web_Card/>
       </div>
 
       <div className="content-wrapper">
         <section className="hero">
-          
           <div className="hero-content">
             <h1 className="warm-accent-text">Music Sheet Library</h1>
             <p>Your cozy digital collection of music scores, thoughtfully curated for passionate musicians and composers.</p>
@@ -61,7 +80,7 @@ function Home() {
 
         {/* anchor for hash fallback */}
         <div id="all-sheets" className="grid">
-          {filteredSheets.map((sheet, i) =>
+          {visibleSheets.map((sheet, i) =>
             sheet?.id ? (
               <SheetCard key={sheet.id} sheet={sheet} />
             ) : (
@@ -69,10 +88,44 @@ function Home() {
             )
           )}
         </div>
+
+        {/* See more section with a soft fade */}
+        {hasMore && (
+          <div
+            className="see-more-wrap"
+            style={{
+              position: 'relative',
+              marginTop: 16,
+              paddingTop: 24,
+              textAlign: 'center'
+            }}
+          >
+            <div
+              aria-hidden="true"
+              style={{
+                position: 'absolute',
+                pointerEvents: 'none',
+                left: 0,
+                right: 0,
+                top: -64,
+                height: 64,
+                // adjust colors to match your theme if needed
+                //background: 'linear-gradient(to bottom, rgba(0,0,0,0.00), rgba(0,0,0,0.08))'
+              }}
+            />
+            <button
+              className="btn see-more-btn" onClick={handleSeeMore} 
+              style={{ border: 'none',borderRadius: 9999,padding: '12px 18px',marginBottom: '60px',fontWeight: 600,cursor: 'pointer',background: '#111',color: '#fff',transition: 'opacity 160ms ease, transform 160ms ease'}}
+              onMouseEnter={(e) => { e.currentTarget.style.opacity = '0.9'; e.currentTarget.style.transform = 'translateY(-1px)'; }}
+              onMouseLeave={(e) => { e.currentTarget.style.opacity = '1'; e.currentTarget.style.transform = 'translateY(0)'; }}
+            >
+              See more {remaining > PAGE_SIZE ? `(+${PAGE_SIZE})` : `(+${remaining})`}
+            </button>
+          </div>
+        )}
       </div>
     </>
   );
-
 }
 
 export default Home;

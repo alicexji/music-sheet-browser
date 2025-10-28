@@ -1,5 +1,3 @@
-
-
 // src/components/SheetCard.jsx
 import React, { useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
@@ -20,16 +18,18 @@ const fetchDownloadCount = async (pdfId) => {
 
 function SheetCard({ sheet }) {
   const [downloadCount, setDownloadCount] = useState(null);
-  console.log('sheet',sheet);
+
   useEffect(() => {
-    fetchDownloadCount(sheet.id).then(setDownloadCount);
-  }, [sheet.id]);
+    // only fetch if there’s a valid URL
+    if (sheet.url && sheet.url.trim() !== '') {
+      fetchDownloadCount(sheet.id).then(setDownloadCount);
+    }
+  }, [sheet.id, sheet.url]);
 
   // when navigating to detail, stash current scroll as a fallback
   const handleClick = () => {
     sessionStorage.setItem('prev-scroll', String(window.scrollY));
   };
- 
 
   return (
     <Link
@@ -43,8 +43,9 @@ function SheetCard({ sheet }) {
           <span className="badge tag">{sheet.period || 'period: unknown'}</span>
           <span className="badge tag">{sheet.countryOfOrigin || 'origin: unknown'}</span>
 
-          <span className="badge tag">Genre:
-            {(sheet.genre ? sheet.genre : ['Classical']).map((g, index) => (
+          <span className="badge tag">
+            Genre:
+            {(sheet.genre ? sheet.genre.slice(0, 2) : ['Classical']).map((g, index) => (
               <span key={index} className="badge tag">{g}</span>
             ))}
           </span>
@@ -54,7 +55,10 @@ function SheetCard({ sheet }) {
         <p className="card-composer">{sheet.composer}</p>
 
         <div className="card-meta">
-          <span className="downloads">⬇ {downloadCount !== null ? downloadCount : '...'}</span>
+          {/* Only show downloads if there’s a valid URL */}
+          {sheet.url && sheet.url.trim() !== '' && (
+            <span className="downloads">⬇ {downloadCount !== null ? downloadCount : '...'}</span>
+          )}
         </div>
 
         <div className="card-buttons">
