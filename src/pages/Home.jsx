@@ -8,7 +8,7 @@ import Header from '../components/Header';
 import Web_Card from '../components/Web_Card';
 import '../App.css';
 
-export const PAGE_SIZE = 8;
+export const PAGE_SIZE = 9;
 
 function Home() {
   const [searchTerm, setSearchTerm] = useState('');
