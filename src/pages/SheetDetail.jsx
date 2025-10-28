@@ -99,6 +99,19 @@ function SheetDetail() {
           </>
         )}
 
+        {sheet.audio?.trim() && (
+          <section className="sheet-section">
+            <h3>Audio Preview</h3>
+            <audio controls preload="none" src={sheet.audio} style={{ width: '100%' }}>
+              Your browser does not support the audio element.
+            </audio>
+            <p className="meta">
+              <a href={sheet.audio} target="_blank" rel="noreferrer">Open audio in new tab</a>
+            </p>
+          </section>
+        )}
+
+
         {sheet.url?.trim() && (
           <section className="sheet-preview">
             <h3>Preview</h3>
