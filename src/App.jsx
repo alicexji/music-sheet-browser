@@ -38,7 +38,7 @@ function App() {
             </div>
           </main>
         )} */}
-        <main className="container-fluid fade-in">
+        <main className="main-full fade-in">
               <Routes>
                 <Route path="/" element={<Home />} />
                 <Route path="/sheet/:id" element={<SheetDetail />} />
